@@ -1,13 +1,7 @@
 pipeline {
     agent {
         kubernetes {
-            label "automation-tests-slave"
-            containerTemplate {
-                name "k8s-slave-jdk12-alpine"
-                image "openjdk:12-jdk-alpine"
-                ttyEnabled true
-                command 'cat'
-            }
+            label "jenkins-prod-jenkins-slave"
         }
     }
     stages {
@@ -20,14 +14,16 @@ pipeline {
         }*/
         stage("Prerequisites") {
             steps {
-                container('k8s-slave-jdk12-alpine') {
-                    sh 'apk update && apk add maven git'
+                container('automation-slave') {
+                    sh """
+                       apt-get -y update && apt-get -y install maven git
+                    """
                 }
             }
         }
         stage("Build Default") {
             steps {
-                container('k8s-slave-jdk12-alpine') {
+                container('automation-slave') {
                     sh "mvn test"
                 }
             }
