@@ -21,7 +21,7 @@ pipeline {
         stage("Prerequisites") {
             steps {
                 container('k8s-slave-jdk12-alpine') {
-                    sh 'apk update && apk maven git'
+                    sh 'apk update && apk add maven git'
                 }
             }
         }
