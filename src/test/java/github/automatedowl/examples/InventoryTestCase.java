@@ -18,7 +18,7 @@ public class InventoryTestCase {
     }
 
     @AfterMethod
-    void closeBrowser() {
+    void tearDown() {
         logger.info("Tearing down MemoryOutputTest..");
     }
 }
