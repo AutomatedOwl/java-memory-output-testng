@@ -19,6 +19,8 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.22.1</version>
                     <configuration>
+                        <useSystemClassLoader>false</useSystemClassLoader>
+                        <forkCount>0</forkCount>
                         <suiteXmlFiles>
                             <suiteXmlFile>default_tests.xml</suiteXmlFile>
                         </suiteXmlFiles>
